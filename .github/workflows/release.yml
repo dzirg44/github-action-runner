@@ -2,7 +2,7 @@ name: runner
 
 on:
   push:
-    branches: [devops-actions]
+    branches: [main]
     tags:
       - "*"
 
