@@ -1,5 +1,5 @@
 FROM debian:bullseye
-ARG RUNNER_VERSION=2.280.3
+ARG GITHUB_RUNNER_VERSION=2.280.3
 ARG AWC_CLI_VERSION=linux-x86_64-2.2.32
 
 ENV GITHUB_RUNNER_REGISTRATION_TOKEN ""
@@ -35,8 +35,8 @@ RUN useradd -m github && \
 USER github
 WORKDIR ${RUNNER_WORKDIR}
 
-RUN curl -O -L https://github.com/actions/runner/releases/download/v$RUNNER_VERSION/actions-runner-linux-x64-$RUNNER_VERSION.tar.gz
-RUN tar xzf ./actions-runner-linux-x64-$RUNNER_VERSION.tar.gz
+RUN curl -O -L https://github.com/actions/runner/releases/download/v${GITHUB_RUNNER_VERSION}/actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz
+RUN tar xzf ./actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz
 RUN sudo ./bin/installdependencies.sh
 RUN chown -R github:github ${RUNNER_WORKDIR}
 
