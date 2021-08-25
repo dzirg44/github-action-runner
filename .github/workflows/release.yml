@@ -36,11 +36,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           echo "${SOURCE_TAG} ${GITHUB_REPOSITORY} ${{ env.ORG }}"
-          docker build  \
-            --build-arg GITHUB_RUNNER_VERSION=${{ env.GITHUB_RUNNER_VERSION }} \ 
-            --build-arg AWC_CLI_VERSION=${{ env.AWC_CLI_VERSION }} \
-            --tag ghcr.io/${{ env.ORG }}/${{ env.GHCR_NAME }}:${{ env.GITHUB_RUNNER_VERSION }}-${SOURCE_TAG} \
-            -f debian-auth-token\Dockerfile .
+          docker build --build-arg GITHUB_RUNNER_VERSION=${{ env.GITHUB_RUNNER_VERSION }} --build-arg AWC_CLI_VERSION=${{ env.AWC_CLI_VERSION }} --tag ghcr.io/${{ env.ORG }}/${{ env.GHCR_NAME }}:${{ env.GITHUB_RUNNER_VERSION }}-${SOURCE_TAG} -f debian-auth-token\Dockerfile debian-auth-token
           docker push ghcr.io/${{ env.ORG }}/${{ env.GHCR_NAME }}:${{ env.GITHUB_RUNNER_VERSION }}-${SOURCE_TAG}
         env:
           SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
