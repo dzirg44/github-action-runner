@@ -40,7 +40,7 @@ RUN tar xzf ./actions-runner-linux-x64-${GITHUB_RUNNER_VERSION}.tar.gz
 RUN sudo ./bin/installdependencies.sh
 RUN chown -R github:github ${RUNNER_WORKDIR}
 
-COPY --chown=github:github ./debian/entrypoint.sh ./entrypoint.sh
+COPY --chown=github:github ./debian-auth-token/entrypoint.sh ./entrypoint.sh
 RUN sudo chmod u+x ./entrypoint.sh
 
 ENTRYPOINT ["/home/github/entrypoint.sh"]
